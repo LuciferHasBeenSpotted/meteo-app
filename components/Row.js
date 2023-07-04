@@ -18,11 +18,6 @@ export default function Row({ item }) {
         return <Text>{date}</Text>
     }
 
-    const icon = () => {
-        
-    }
-
-
     const { icon } = item.day.condition;
 
     return (
