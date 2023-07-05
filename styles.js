@@ -6,7 +6,6 @@ export default StyleSheet.create({
     bold: { fontWeight: 'bold' },
     view_app: {
         flex: 1,
-        marginVertical: 40
     },
     view_search: {
         margin: 20
@@ -14,8 +13,6 @@ export default StyleSheet.create({
     view_row: {
         backgroundColor: '#a2273C',
         borderWidth: 0,
-        borderBottomWidth: 1,
-        borderBottomColor: '#202340',
         paddingHorizontal: 20,
         paddingVertical: 10,
         justifyContent: 'space-between'
