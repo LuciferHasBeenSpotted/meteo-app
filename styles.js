@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
     color: '#a2273C',
     white: { color: 'white' },
     bold: { fontWeight: 'bold' },
@@ -9,13 +9,6 @@ export default StyleSheet.create({
     },
     view_search: {
         margin: 20
-    },
-    view_row: {
-        backgroundColor: '#a2273C',
-        borderWidth: 0,
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        justifyContent: 'space-between'
     },
     temp_row: {
         color: 'white',
@@ -40,3 +33,9 @@ export default StyleSheet.create({
         alignItems: 'center'
     }
 })
+
+export function updateColor(color) {
+    styles.color = color;
+}
+
+export default styles;
