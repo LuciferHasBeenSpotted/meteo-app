@@ -14,16 +14,16 @@ export default function Nav() {
             tabBarStyle: { backgroundColor: styles.color, borderColor: "#3f101c", padding: 10 },
             tabBarActiveTintColor: 'white',
             }}
-        >
+            >
             <Tab.Screen
                 name="Rechercher une ville"
                 component={Search}
                 options={{
-                tabBarIcon: ({ size }) => (
-                    <Icon name="search" color="white" size={size} />
-                    ),
-                    headerStyle: { backgroundColor: styles.color }, tabBarLabel: '', headerTintColor: 'white'
-                }}
+                    tabBarIcon: ({ size }) => (
+                        <Icon name="search" color="white" size={size} />
+                        ),
+                        headerStyle: { backgroundColor: styles.color }, tabBarLabel: '', headerTintColor: 'white'
+                    }}
             />
             <Tab.Screen
                 name="Parametres"
