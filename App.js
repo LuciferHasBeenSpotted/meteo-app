@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import Nav from './components/utils/Nav';
 import Results from './components/search/Results';
+import ColorPick from './components/settings/ColorPick'
 import styles from "./styles";
 
 const Stack = createStackNavigator();
@@ -18,13 +19,23 @@ export default function App() {
                     <Stack.Screen 
                         name="Results" 
                         component={Results} 
-                        options={{ 
+                        options= {{ 
                             headerTitle: 'Résultat de recherche', 
                             headerStyle: { backgroundColor: styles.color }, 
                             headerTintColor: 'white',
                             headerBackTitle: ' ',
                         }} 
-                        />
+                    />
+                    <Stack.Screen 
+                        name="ColorPick" 
+                        component={ColorPick} 
+                        options= {{ 
+                            headerTitle: "Couleur de l'application",
+                            headerStyle: { backgroundColor: styles.color },
+                            headerTintColor: 'white',
+                            headerBackTitle: ' '
+                        }} 
+                    />
                 </Stack.Navigator>
             </NavigationContainer>
         </View>
