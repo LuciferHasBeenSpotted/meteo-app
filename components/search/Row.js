@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import moment from 'moment';
 import 'moment/locale/fr';
 
@@ -23,7 +23,7 @@ export default function Row({ item, index }) {
 
     return (
         <SlideInView index={index}>
-            <View style={[styles.view_row, styles.flex]}>
+            <View style={style.view_row}>
                 <View style={styles.flex}>
                     <Image source={{ uri: `https:${icon}` }} style={{ width: 50, height: 50 }} />
                     <Text style={{ marginLeft: 10 }}>{day()} {date()}</Text>
@@ -33,3 +33,15 @@ export default function Row({ item, index }) {
         </SlideInView>
 );
 }
+
+const style = StyleSheet.create({
+    view_row: {
+        backgroundColor: styles.color,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        justifyContent: 'space-between',
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+})
