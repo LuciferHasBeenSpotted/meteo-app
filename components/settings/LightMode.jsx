@@ -1,40 +1,52 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+
 import ListItem from './ListItem';
+import { ColorContext } from '../utils/ColorContext';
+import styles from '../../styles';
 
 export default function LightMode() {
-  const [selectedItem, setSelectedItem] = useState('system');
+    const [selectedItem, setSelectedItem] = useState('light');
+    const navigation = useNavigation();
+    const { theme, darkmode, setDarkmode } = useContext(ColorContext)
 
-  function handlePress(item) {
-    setSelectedItem(item);
-  };
+    useFocusEffect(
+        React.useCallback(() => {
+            navigation.setOptions({
+                headerStyle: {
+                    backgroundColor: theme
+                }
+            })
+        })
+    )
 
-  return (
-    <View style={styles.container}>
-      <ListItem
-        item="light"
-        isSelected={selectedItem === 'light'}
-        onPress={() => handlePress('light')}
-      />
-      <ListItem
-        item="dark"
-        isSelected={selectedItem === 'dark'}
-        onPress={() => handlePress('dark')}
-      />
-      <ListItem
-        item="system"
-        isSelected={selectedItem === 'system'}
-        onPress={() => handlePress('systeme')}
-      />
-    </View>
-  );
+
+    function handlePress(item) {
+      setSelectedItem(item);
+      if(item == 'dark') {
+        setDarkmode(true)
+      }else setDarkmode(false)
+    };
+
+    return (
+        <View 
+            style={[ {flex: 1,
+                alignItems: 'center',
+                justifyContent: 'flex-start'},
+                darkmode ? styles.darkmode : {backgroundColor: 'white'}
+            ]}
+        >
+            <ListItem
+                item="light"
+                isSelected={selectedItem === 'light'}
+                onPress={() => handlePress('light')}        
+            />
+            <ListItem
+                item="dark"
+                isSelected={selectedItem === 'dark'}
+                onPress={() => handlePress('dark')}
+            />
+        </View>
+    );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginTop: 30
-  }
-});

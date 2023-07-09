@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 export default function App() {
     return (
         <ColorProvider>
-            <View style={styles.view_app}>
+            <View style={{flex: 1}}>
                 <StatusBar hidden={true}/>
                 <NavigationContainer>
                     <Stack.Navigator>
@@ -24,7 +24,8 @@ export default function App() {
                             component={Results} 
                             options= {{ 
                                 headerTitle: 'Résultat de recherche', 
-                                headerStyle: { backgroundColor: styles.color }, 
+                                headerStyle: { backgroundColor: styles.color},
+                                headerTitleAlign: 'center', 
                                 headerTintColor: 'white',
                                 headerBackTitle: ' ',
                             }} 
@@ -35,6 +36,7 @@ export default function App() {
                             options= {{ 
                                 headerTitle: "Couleur de l'application",
                                 headerStyle: { backgroundColor: styles.color },
+                                headerTitleAlign: 'center', 
                                 headerTintColor: 'white',
                                 headerBackTitle: ' '
                             }} 
@@ -45,6 +47,7 @@ export default function App() {
                             options= {{ 
                                 headerTitle: "Mode clair/sombre",
                                 headerStyle: { backgroundColor: styles.color },
+                                headerTitleAlign: 'center', 
                                 headerTintColor: 'white',
                                 headerBackTitle: ' '
                             }} 

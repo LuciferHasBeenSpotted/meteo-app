@@ -17,7 +17,7 @@ export default function Nav() {
             tabBarStyle: { backgroundColor: theme, borderColor: "#3f101c", padding: 10 },
             tabBarActiveTintColor: 'white',
             }}
-            >
+        >
             <Tab.Screen
                 name="Rechercher une ville"
                 component={Search}
@@ -25,7 +25,8 @@ export default function Nav() {
                     tabBarIcon: ({ size }) => (
                         <Icon name="search" color="white" size={size} />
                         ),
-                        headerStyle: { backgroundColor: theme}, tabBarLabel: '', headerTintColor: 'white'
+                        headerStyle: { backgroundColor: theme}, tabBarLabel: '', 
+                            headerTitleAlign: 'center', headerTintColor: 'white', 
                     }}
             />
             <Tab.Screen
@@ -34,7 +35,8 @@ export default function Nav() {
                 options={{
                 tabBarIcon: ({ size }) => (
                     <Icon name="cog" color="white" size={size} />
-                    ), headerStyle: { backgroundColor: theme }, tabBarLabel: '', headerTintColor: 'white'
+                    ), headerStyle: { backgroundColor: theme }, tabBarLabel: '' ,
+                    headerTintColor: 'white', headerTitleAlign: 'center'
                 }}
             />
         </Tab.Navigator>

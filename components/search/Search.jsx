@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { View, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { ColorContext } from '../utils/ColorContext';
 import styles from '../../styles';
 
 export default function Search() {
     const [city, setCity] = useState('Paris');
-
+    const { theme, darkmode } = useContext(ColorContext);
+    
     const updateCity = city => setCity(city);
 
     const navigation = useNavigation();
@@ -16,9 +18,16 @@ export default function Search() {
     };
 
     return (
-        <View style={[styles.view_search, styles.container]}>
+        <View style={[{flex: 1, padding: 20}, darkmode ? styles.darkmode : {backgroundColor: 'white'}]}>
             <TextInput
-                style={styles.input_search}
+                style={[{
+                    height: 40,
+                    borderColor: 'gray',
+                    borderWidth: 1,
+                    marginBottom: 20,
+                    color: darkmode ? 'white' : 'black'
+                    }, 
+                ]}
                 value={city}
                 onChangeText={updateCity}
                 textAlign='center'
@@ -26,7 +35,7 @@ export default function Search() {
             <Button
                 title='Rechercher cette ville'
                 onPress={submit}
-                color={styles.color}
+                color={theme}
             />
         </View>
     );
