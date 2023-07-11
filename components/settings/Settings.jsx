@@ -24,6 +24,7 @@ export default function Settings() {
             });
         }, [theme])
     );
+    
     return <View style={[
                     {flex: 1}, 
                     darkmode ? styles.darkmode : {backgroundColor: 'white'},

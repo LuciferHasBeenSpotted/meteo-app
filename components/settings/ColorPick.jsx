@@ -5,6 +5,7 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { ColorContext } from "../utils/ColorContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import styles from "../../utils/styles";
 
 export default function ColorPick() {
     const { theme, setTheme, darkmode } = useContext(ColorContext);

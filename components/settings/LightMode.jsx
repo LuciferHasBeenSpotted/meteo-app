@@ -8,9 +8,9 @@ import styles from '../../utils/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LightMode() {
-    const [selectedItem, setSelectedItem] = useState('light');
+    const [selectedItem, setSelectedItem] = useState();
     const navigation = useNavigation();
-    const { theme, darkmode, setDarkmode } = useContext(ColorContext)
+    const { theme, darkmode, setDarkmode } = useContext(ColorContext);
 
     useFocusEffect(
         useCallback(() => {
@@ -18,9 +18,9 @@ export default function LightMode() {
                 headerStyle: {
                     backgroundColor: theme
                 }
-            })
+            });
         })
-    )
+    );
 
 
     async function handlePress(item) {

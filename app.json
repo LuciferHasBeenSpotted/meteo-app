@@ -18,6 +18,12 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.luciferhasbeenspotted.meteo"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7f06e3d6-ab0d-469c-82ff-7592afd72eed"
       }
     }
   }
