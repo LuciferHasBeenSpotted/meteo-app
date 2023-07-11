@@ -1,8 +1,8 @@
 import { useContext, useCallback } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Link } from '@react-navigation/native';
+import { View, Text } from 'react-native';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
+import SettingsItem from './utils/SettingsItem';
 import { ColorContext } from '../utils/ColorContext';
 import styles from '../../utils/styles';
 
@@ -25,35 +25,22 @@ export default function Settings() {
         }, [theme])
     );
     
-    return <View style={[
-                    {flex: 1}, 
-                    darkmode ? styles.darkmode : {backgroundColor: 'white'},
+    return (
+        <View style={[
+                {flex: 1}, 
+                darkmode ? styles.darkmode : {backgroundColor: 'white'},
+            ]}
+        >
+            <SettingsItem screenName='ColorPick'>
+                <Text>Changer la couleur de l'application</Text>
+            </SettingsItem>
 
-                ]}>
-        <Link to={{screen: "ColorPick"}} 
-            style={[
-                style.row_settings, 
-                {color: darkmode ? 'white' : theme},
-                darkmode ? styles.clairDarkmode : {backgroundColor: 'white'} 
-            ]}
-        >
-        <Text>Changer la couleur de l'application</Text></Link>
-        <Link to={{screen: "LightMode"}} 
-            style={[
-                style.row_settings, 
-                {color: darkmode ? 'white' : theme},
-                darkmode ? styles.clairDarkmode : {backgroundColor: 'white'} 
-            ]}
-        >
-        <Text>Mode clair/sombre</Text></Link>
-    </View>
+            <SettingsItem screenName='LightMode'>
+                <Text>Mode clair/sombre</Text>
+            </SettingsItem>
+            <SettingsItem screenName='ResetColor'>
+                <Text>Réinitialiser la couleur de l'application</Text>
+            </SettingsItem>
+        </View>
+    )
 }
-
-const style = StyleSheet.create({
-    row_settings: {
-        backgroundColor: 'white',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        justifyContent: 'center'
-    }
-})

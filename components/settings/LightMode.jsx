@@ -2,7 +2,7 @@ import { useState, useContext, useCallback } from 'react';
 import { View } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
-import ListItem from './ListItem';
+import ListItem from './utils/ListItem';
 import { ColorContext } from '../utils/ColorContext';
 import styles from '../../utils/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -21,7 +21,6 @@ export default function LightMode() {
             });
         })
     );
-
 
     async function handlePress(item) {
         setSelectedItem(item);

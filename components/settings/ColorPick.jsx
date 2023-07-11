@@ -41,11 +41,12 @@ export default function ColorPick() {
                             width: Dimensions.get("window").width * 0.8,
                             height: 30,
                             backgroundColor: color,
+                            borderRadius: 5
                             }}
                         onPress={handleOnPress}
                     >
                         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                            <Text style={{ fontSize: 15, textAlign: "center", color: "white" }}>Appliquer !</Text>
+                            <Text style={{ fontSize: 15, textAlign: "center", color: "white", fontWeight: '700' }}>APPLIQUER !</Text>
                         </View>
                     </TouchableHighlight>
                 </View>

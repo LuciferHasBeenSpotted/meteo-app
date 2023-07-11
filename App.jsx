@@ -6,12 +6,11 @@ import Nav from './components/utils/Nav';
 import Results from './components/search/Results';
 import ColorPick from './components/settings/ColorPick'
 import { ColorProvider } from "./components/utils/ColorContext";
-import styles from "./utils/styles";
 import LightMode from "./components/settings/LightMode";
+import ResetColor from './components/settings/ResetColor';
 
-const Stack = createStackNavigator();
-
-export default function App() {
+export default function App() {       
+    const Stack = createStackNavigator();
     return (
         <ColorProvider>
             <View style={{flex: 1}}>
@@ -22,9 +21,8 @@ export default function App() {
                         <Stack.Screen 
                             name="Results" 
                             component={Results} 
-                            options= {{ 
+                            options= {{
                                 headerTitle: 'Résultat de recherche', 
-                                headerStyle: { backgroundColor: styles.color},
                                 headerTitleAlign: 'center', 
                                 headerTintColor: 'white',
                                 headerBackTitle: ' ',
@@ -33,28 +31,36 @@ export default function App() {
                         <Stack.Screen 
                             name="ColorPick" 
                             component={ColorPick} 
-                            options= {{ 
-                                headerTitle: "Couleur de l'application",
-                                headerStyle: { backgroundColor: styles.color },
+                            options= {{
+                                headerTitle: "Couleur de l'application", 
                                 headerTitleAlign: 'center', 
                                 headerTintColor: 'white',
-                                headerBackTitle: ' '
+                                headerBackTitle: ' ',
                             }} 
                         />
                         <Stack.Screen 
                             name="LightMode" 
                             component={LightMode} 
-                            options= {{ 
-                                headerTitle: "Mode clair/sombre",
-                                headerStyle: { backgroundColor: styles.color },
+                            options= {{
+                                headerTitle: 'Préférence de luminosité', 
                                 headerTitleAlign: 'center', 
                                 headerTintColor: 'white',
-                                headerBackTitle: ' '
+                                headerBackTitle: ' ',
                             }} 
                         />
+                        <Stack.Screen 
+                        name="ResetColor" 
+                        component={ResetColor} 
+                        options= {{
+                            headerTitle: 'Remettre la couleur de base', 
+                            headerTitleAlign: 'center', 
+                            headerTintColor: 'white',
+                            headerBackTitle: ' ',
+                        }} 
+                    />
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>
         </ColorProvider>
-);
+    );
 }

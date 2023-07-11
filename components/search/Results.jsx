@@ -3,7 +3,7 @@ import { View, ActivityIndicator, FlatList } from 'react-native';
 import axios from 'axios';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import Row from './Row';
+import Row from './utils/Row';
 import { ColorContext } from '../utils/ColorContext';
 import styles from '../../utils/styles'
 
@@ -51,6 +51,7 @@ export default function Results({ route }) {
                 renderItem={({ item, index }) => <Row item={item} index={index} />}
                 bounces={false}
                 style={darkmode ? styles.darkmode : 'white'}
+                
             />
         );
     }
