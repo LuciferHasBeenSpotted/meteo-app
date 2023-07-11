@@ -8,7 +8,6 @@ export function ColorProvider({ children }) {
     
     useEffect(() => {
         async function loadColor() {
-            await AsyncStorage.clear()
             const theme = await AsyncStorage.getItem('theme');
             const darkmode = await AsyncStorage.getItem('darkmode');
             
