@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import moment from 'moment';
 import 'moment/locale/fr';
 
-import styles from '../../styles';
+import styles from '../../utils/styles';
 import SlideInView from '../animations/SlideInView';
 import { ColorContext } from '../utils/ColorContext'
 

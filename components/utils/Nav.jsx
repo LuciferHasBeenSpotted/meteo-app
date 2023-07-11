@@ -5,7 +5,6 @@ import { useContext } from "react";
 import Settings from "../settings/Settings";
 import Search from "../search/Search";
 import { ColorContext } from "./ColorContext";
-import styles from '../../styles';
 
 const Tab = createBottomTabNavigator();
 

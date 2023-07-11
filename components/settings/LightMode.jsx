@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { useState, useContext, useCallback } from 'react';
+import { View } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import ListItem from './ListItem';
 import { ColorContext } from '../utils/ColorContext';
-import styles from '../../styles';
+import styles from '../../utils/styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LightMode() {
     const [selectedItem, setSelectedItem] = useState('light');
@@ -12,7 +13,7 @@ export default function LightMode() {
     const { theme, darkmode, setDarkmode } = useContext(ColorContext)
 
     useFocusEffect(
-        React.useCallback(() => {
+        useCallback(() => {
             navigation.setOptions({
                 headerStyle: {
                     backgroundColor: theme
@@ -22,11 +23,15 @@ export default function LightMode() {
     )
 
 
-    function handlePress(item) {
-      setSelectedItem(item);
-      if(item == 'dark') {
-        setDarkmode(true)
-      }else setDarkmode(false)
+    async function handlePress(item) {
+        setSelectedItem(item);
+        if(item == 'dark') {
+            setDarkmode(true);
+            await AsyncStorage.setItem('darkmode', 'true');
+        }else {
+            setDarkmode(false);
+            await AsyncStorage.setItem('darkmode', 'false')
+        } 
     };
 
     return (
@@ -38,13 +43,13 @@ export default function LightMode() {
             ]}
         >
             <ListItem
-                item="light"
-                isSelected={selectedItem === 'light'}
+                item="Mode clair"
+                isSelected={selectedItem == 'light'}
                 onPress={() => handlePress('light')}        
             />
             <ListItem
-                item="dark"
-                isSelected={selectedItem === 'dark'}
+                item="Mode sombre"
+                isSelected={selectedItem == 'dark'}
                 onPress={() => handlePress('dark')}
             />
         </View>

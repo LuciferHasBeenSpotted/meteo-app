@@ -1,18 +1,18 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext, useCallback } from "react";
 import { View, Text, Dimensions, TouchableHighlight } from "react-native";
 import ColorPicker from "react-native-wheel-color-picker";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
-import styles, { updateColor } from "../../styles";
 import { ColorContext } from "../utils/ColorContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ColorPick() {
-    const [color, setColor] = useState(styles.color);
-    const { setTheme, darkmode } = useContext(ColorContext);
+    const { theme, setTheme, darkmode } = useContext(ColorContext);
+    const [color, setColor] = useState(theme);
     const navigation = useNavigation();
 
     useFocusEffect(
-        React.useCallback(() => {
+        useCallback(() => {
             navigation.setOptions({
                 headerStyle: {
                     backgroundColor: color,
@@ -21,13 +21,9 @@ export default function ColorPick() {
         }, [color])
     );
 
-    function handleOnColorChange(color) {
-        setColor(color);
-    }
-
-    function handleOnPress() {
-        updateColor(color);
+    async function handleOnPress() {
         setTheme(color);
+        await AsyncStorage.setItem('theme', color);
     }
 
     return (
@@ -36,7 +32,7 @@ export default function ColorPick() {
                 <View
                     style={{ width: Dimensions.get("window").width * 0.8, height: 50 }}
                 >
-                    <ColorPicker color={color} onColorChange={handleOnColorChange} />
+                    <ColorPicker color={color} onColorChange={setColor} />
                 </View>
                 <View style={{ marginTop: 300 }}>
                     <TouchableHighlight

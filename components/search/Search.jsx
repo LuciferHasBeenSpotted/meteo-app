@@ -3,7 +3,7 @@ import { View, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { ColorContext } from '../utils/ColorContext';
-import styles from '../../styles';
+import styles from '../../utils/styles';
 
 export default function Search() {
     const [city, setCity] = useState('Paris');

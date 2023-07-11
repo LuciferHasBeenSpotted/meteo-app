@@ -5,7 +5,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import Row from './Row';
 import { ColorContext } from '../utils/ColorContext';
-import styles from '../../styles'
+import styles from '../../utils/styles'
 
 export default function Results({ route }) {
     const { city } = route.params;

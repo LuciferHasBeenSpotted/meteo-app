@@ -6,7 +6,7 @@ import Nav from './components/utils/Nav';
 import Results from './components/search/Results';
 import ColorPick from './components/settings/ColorPick'
 import { ColorProvider } from "./components/utils/ColorContext";
-import styles from "./styles";
+import styles from "./utils/styles";
 import LightMode from "./components/settings/LightMode";
 
 const Stack = createStackNavigator();

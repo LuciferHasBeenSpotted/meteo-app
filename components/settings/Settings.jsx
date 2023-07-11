@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import { useContext, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Link } from '@react-navigation/native';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { ColorContext } from '../utils/ColorContext';
-import styles from '../../styles';
+import styles from '../../utils/styles';
 
 export default function Settings() {
     const { theme, darkmode } = useContext(ColorContext);
     const navigation = useNavigation();
 
     useFocusEffect(
-        React.useCallback(() => {
+        useCallback(() => {
             navigation.setOptions({
                 headerStyle: {
                     backgroundColor: theme,
