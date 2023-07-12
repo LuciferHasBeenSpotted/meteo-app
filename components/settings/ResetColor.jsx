@@ -1,6 +1,6 @@
-import { useContext, useCallback } from "react";
+import { useContext, useCallback  } from "react";
+import { View, Text, Button, Platform } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { View, Text, Button } from "react-native";
 import { ColorContext } from "../utils/ColorContext";
 
 import styles from "../../utils/styles";
@@ -30,11 +30,20 @@ export default function ResetColor() {
             darkmode ? styles.darkmode : {backgroundColor: 'white'}]}
         >
             <Text style={{color: '#a2273C', fontSize: 22, textAlign: 'center', marginBottom: 50}}>Vous êtes sur le point de réinitialiser le thème de votre application</Text>
-            <View style={{borderColor: darkmode ? theme : 'black', borderWidth: 1}}>
-                <Button title="Réinitialiser" color="#a2273C" onPress={submit}/>
+            <View  
+                style={{
+                    borderColor: Platform.OS == 'ios' ? darkmode ? theme : 'black' : theme, borderWidth: 1}}>
+                <Button title="Réinitialiser" color="transparent" onPress={submit}/>
             </View>
         </View>
     
         
     )
 }
+
+//Platform = Ios
+//darkmode = True
+//theme &!= 'black'
+
+//Platform != Andoid
+//
