@@ -3,14 +3,14 @@ import { View } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import ListItem from './utils/ListItem';
-import { ColorContext } from '../utils/ColorContext';
+import { Context } from '../utils/Context';
 import styles from '../../utils/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LightMode() {
     const [selectedItem, setSelectedItem] = useState();
     const navigation = useNavigation();
-    const { theme, darkmode, setDarkmode } = useContext(ColorContext);
+    const { theme, darkmode, setDarkmode } = useContext(Context);
 
     useFocusEffect(
         useCallback(() => {

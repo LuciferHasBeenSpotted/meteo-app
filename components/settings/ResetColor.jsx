@@ -1,14 +1,14 @@
 import { useContext, useCallback  } from "react";
 import { View, Text, Button, Platform } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { ColorContext } from "../utils/ColorContext";
+import { Context } from "../utils/Context";
 
 import styles from "../../utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ResetColor() {
     const navigation = useNavigation();
-    const { theme, darkmode, setTheme } = useContext(ColorContext);
+    const { theme, darkmode, setTheme } = useContext(Context);
 
     useFocusEffect(
         useCallback(() => {
@@ -40,10 +40,3 @@ export default function ResetColor() {
         
     )
 }
-
-//Platform = Ios
-//darkmode = True
-//theme &!= 'black'
-
-//Platform != Andoid
-//

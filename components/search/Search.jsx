@@ -1,24 +1,26 @@
 import { useState, useContext } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Button, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { ColorContext } from '../utils/ColorContext';
+import Fav from './Fav';
+import { Context } from '../utils/Context';
 import styles from '../../utils/styles';
 
 export default function Search() {
+
     const [city, setCity] = useState('Paris');
-    const { theme, darkmode } = useContext(ColorContext);
-    
+    const { theme, darkmode, fav } = useContext(Context);
+
     const updateCity = city => setCity(city);
 
     const navigation = useNavigation();
 
     function submit() {
-        navigation.navigate('Results', {city: city});
+        navigation.navigate('Results', {city: city, nbDay: 14});
     };
 
     return (
-        <View style={[{flex: 1, padding: 20}, darkmode ? styles.darkmode : {backgroundColor: 'white'}]}>
+        <View style={[{height: Dimensions.get('window').height,padding: 20}, darkmode ? styles.darkmode : {backgroundColor: 'white'}]}>
             <TextInput
                 style={[{
                     height: 40,
@@ -37,6 +39,7 @@ export default function Search() {
                 onPress={submit}
                 color={theme}
             />
+            <Fav/>
         </View>
     );
 }

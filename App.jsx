@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Nav from './components/utils/Nav';
 import Results from './components/search/Results';
 import ColorPick from './components/settings/ColorPick'
-import { ColorProvider } from "./components/utils/ColorContext";
+import { ColorProvider } from "./components/utils/Context";
 import LightMode from "./components/settings/LightMode";
 import ResetColor from './components/settings/ResetColor';
 

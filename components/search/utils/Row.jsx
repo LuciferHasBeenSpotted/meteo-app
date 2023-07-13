@@ -5,11 +5,11 @@ import 'moment/locale/fr';
 
 import styles from '../../../utils/styles';
 import SlideInView from '../../animations/SlideInView';
-import { ColorContext } from '../../utils/ColorContext'
+import { Context } from '../../utils/Context'
 
 moment.locale('fr');
 export default function Row({ item, index }) {
-    const { theme } = useContext(ColorContext)
+    const { theme } = useContext(Context)
 
     function day ()  {
         const day = moment(new Date(item.date).getTime()).format('ddd');
@@ -26,7 +26,7 @@ export default function Row({ item, index }) {
     return (
         <SlideInView index={index}>
             <View style={[style.view_row, {backgroundColor: theme}]}>
-                <View style={{flex: 1,
+                <View style={{
                                 flexDirection: 'row',
                                 alignItems: 'center'
                             }}

@@ -1,38 +1,53 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, ActivityIndicator, FlatList } from 'react-native';
-import axios from 'axios';
+import { View, ActivityIndicator, FlatList, TouchableHighlight, Text, Dimensions } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import fetchWeather from './utils/fetchWeather.js'
 import Row from './utils/Row';
-import { ColorContext } from '../utils/ColorContext';
+import { Context } from '../utils/Context.jsx';
 import styles from '../../utils/styles'
 
-export default function Results({ route }) {
-    const { city } = route.params;
+export default function Results({ city, nbDay, route, mode }) {
     const [results, setResults] = useState(null);
-    const { theme, darkmode } = useContext(ColorContext);
+    if(!mode) mode = 'results'
+    if(mode == 'results') { 
+        city = route.params.city;
+        nbDay = route.params.nbDay;
+    }
+    const { theme, darkmode, fav, setFav } = useContext(Context);
     const navigation = useNavigation();
 
     useEffect(() => {
-        fetchWeather()
-    }, []);
+        async function getResults() {
+            setResults(await fetchWeather(city, nbDay))
+        }
+        getResults();
+    }, [fav, city, nbDay]);
+
 
     useFocusEffect(
         React.useCallback(() => {
             navigation.setOptions({
                 headerStyle: {
                     backgroundColor: theme,
-                },
+                }
             });
         }, [theme])
     );
 
-
-    function fetchWeather() {
-        axios.get(`https://api.weatherapi.com/v1/forecast.json?key=1a5193fc496849f8aca13845230407&q=${city}&days=14`)
-            .then((response) => setResults(response.data.forecast.forecastday))
-            .catch((error) => console.log('erreur fetch Result.jsx', error));
-    };
+    function handleOnPress() {
+        async function sousHandle() {
+            if(fav && city && fav.toLowerCase() == city.toLowerCase()) {
+                setFav('');
+                AsyncStorage.removeItem('fav')
+            }else {
+                await AsyncStorage.setItem('fav', city);
+                setFav(city)
+            }
+        }
+        sousHandle();
+    }
 
     if (results === null) {
         return (
@@ -45,14 +60,32 @@ export default function Results({ route }) {
         );
     } else {
         return (
-            <FlatList
-                data={results}
-                keyExtractor={(item) => item.date}
-                renderItem={({ item, index }) => <Row item={item} index={index} />}
-                bounces={false}
-                style={darkmode ? styles.darkmode : 'white'}
-                
-            />
+            <View style={{height: Dimensions.get('window').height * 0.55}}>
+                {mode == 'results' ? (
+                    <TouchableHighlight
+                        style={{
+                            height: 30,
+                            backgroundColor: theme,
+                        }}
+                        onPress={handleOnPress}
+                        underlayColor='none'
+                    >
+                        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                            <Text style={{ fontSize: 15, textAlign: "center", color: "white", fontWeight: '700' }}>
+                                {fav == city ? 'Retirer des' : 'Ajouter aux'} favoris ?
+                                </Text>
+                        </View>
+                    </TouchableHighlight>
+                ) : null}
+
+                <FlatList
+                    data={results}
+                    keyExtractor={(item) => item.date}
+                    renderItem={({ item, index }) => <Row item={item} index={index} />}
+                    bounces={false}
+                    style={darkmode ? styles.darkmode : 'white'}
+                />
+            </View>
         );
     }
 }

@@ -3,12 +3,12 @@ import { View, Text, Dimensions, TouchableHighlight } from "react-native";
 import ColorPicker from "react-native-wheel-color-picker";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
-import { ColorContext } from "../utils/ColorContext";
+import { Context } from "../utils/Context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../../utils/styles";
 
 export default function ColorPick() {
-    const { theme, setTheme, darkmode } = useContext(ColorContext);
+    const { theme, setTheme, darkmode } = useContext(Context);
     const [color, setColor] = useState(theme);
     const navigation = useNavigation();
 
@@ -44,6 +44,7 @@ export default function ColorPick() {
                             borderRadius: 5
                             }}
                         onPress={handleOnPress}
+                        underlayColor='none'
                     >
                         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                             <Text style={{ fontSize: 15, textAlign: "center", color: "white", fontWeight: '700' }}>APPLIQUER !</Text>

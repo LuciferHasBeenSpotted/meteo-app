@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { Link } from '@react-navigation/native';
 
-import { ColorContext } from "../../utils/ColorContext";
+import { Context } from "../../utils/Context";
 import styles from "../../../utils/styles";
 
 export default function SettingsItem({screenName, children}) {
-    const { theme, darkmode } = useContext(ColorContext);
+    const { theme, darkmode } = useContext(Context);
     return (
         <View>    
             <Link to={{screen: screenName}} 

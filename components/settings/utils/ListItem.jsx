@@ -1,9 +1,9 @@
 import { TouchableOpacity, StyleSheet, Text, Dimensions } from "react-native";
 import { useContext } from "react";
-import { ColorContext } from '../../utils/ColorContext';
+import { Context } from '../../utils/Context';
 
 export default function ListItem({ item, isSelected, onPress }) {
-    const { theme, darkmode } = useContext(ColorContext);
+    const { theme, darkmode } = useContext(Context);
     return (
         <TouchableOpacity
             style={[styles.item, 

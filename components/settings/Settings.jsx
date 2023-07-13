@@ -3,11 +3,11 @@ import { View, Text } from 'react-native';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import SettingsItem from './utils/SettingsItem';
-import { ColorContext } from '../utils/ColorContext';
+import { Context } from '../utils/Context';
 import styles from '../../utils/styles';
 
 export default function Settings() {
-    const { theme, darkmode } = useContext(ColorContext);
+    const { theme, darkmode } = useContext(Context);
     const navigation = useNavigation();
 
     useFocusEffect(

@@ -4,12 +4,12 @@ import { useContext } from "react";
 
 import Settings from "../settings/Settings";
 import Search from "../search/Search";
-import { ColorContext } from "./ColorContext";
+import { Context } from "./Context";
 
 const Tab = createBottomTabNavigator();
 
 export default function Nav() {
-    const { theme } = useContext(ColorContext);
+    const { theme } = useContext(Context);
     return (
         <Tab.Navigator 
             screenOptions={{
@@ -23,19 +23,24 @@ export default function Nav() {
                 options={{
                     tabBarIcon: ({ size }) => (
                         <Icon name="search" color="white" size={size} />
-                        ),
-                        headerStyle: { backgroundColor: theme}, tabBarLabel: '', 
-                            headerTitleAlign: 'center', headerTintColor: 'white', 
-                    }}
+                    ),
+                    headerStyle: { backgroundColor: theme},
+                    tabBarLabel: '',
+                    headerTitleAlign: 'center',
+                    headerTintColor: 'white',
+                }}
             />
             <Tab.Screen
                 name="Parametres"
                 component={Settings}
                 options={{
-                tabBarIcon: ({ size }) => (
-                    <Icon name="cog" color="white" size={size} />
-                    ), headerStyle: { backgroundColor: theme }, tabBarLabel: '' ,
-                    headerTintColor: 'white', headerTitleAlign: 'center'
+                    tabBarIcon: ({ size }) => (
+                        <Icon name="cog" color="white" size={size} />
+                    ),
+                    headerStyle: { backgroundColor: theme },
+                    tabBarLabel: '',
+                    headerTintColor: 'white',
+                    headerTitleAlign: 'center',
                 }}
             />
         </Tab.Navigator>
